@@ -49,23 +49,23 @@ public class Util {
 
   public static Map<String, String> getUrlParamsFromUrl(String url) {
     Map<String, String> params = new HashMap<>();
-    String[] urlBits = url.split("\\?", 2);
+    String[] urlBits = url.split("\\?", 2); // 물음표기준으로 두덩이로 나누고 String형태의 배열에 넣어줌
 
-    if (urlBits.length == 1) {
-      return params;
+    if (urlBits.length == 1) { // 배열에 담긴 값이 1개이면 (명령어가 정상적? 비정상적? 으로 들어오면) 이해안됨
+      return params; // Map 객체가 담긴 params를 리턴함.
     }
 
-    for (String bit : urlBits[1].split("&")) {
-      String[] bits = bit.split("=", 2);
+    for (String bit : urlBits[1].split("&")) { // 나눠진 명령어의 배열 중 1번 인덱스값을 &기준으로 나눠서 bit변수로 반복문을 실행
+      String[] bits = bit.split("=", 2); // 그렇게 urlBits[1].split 처리된 요소들을 다시 '=' 기준으로 두덩이로 나누고 bits 배열에 넣음.
 
-      if (bits.length == 1) {
-        continue;
+      if (bits.length == 1) { // 그렇게 나눠진 것들이 담긴 배열의 길이가 1일때
+        continue; // 다음 반복으로 바로 실행하게 됨.
       }
 
-      params.put(bits[0], bits[1]);
+      params.put(bits[0], bits[1]); // bits배열의 0번인덱스값을 key, 1번인덱스값을 value로 지정하여 params Map에 넣어준다.(반복문이 끝날때까지 반복)
     }
 
-    return params;
+    return params; // 그렇게 값이 누적된 params를 반환한다.
   }
 
   public static String getUrlPathFromUrl(String url) {

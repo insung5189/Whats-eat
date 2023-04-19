@@ -9,42 +9,43 @@ import java.util.List;
 import java.util.Map;
 
 public class ArticleService {
-  private ArticleRepository articleRepository;
-  public ArticleService() {
-    articleRepository = Container.articleRepository;
-  }
+    private ArticleRepository articleRepository;
 
-  public int write(int memberId, String title, String body) {
-    return articleRepository.write(memberId, title, body);
-  }
+    public ArticleService() {
+        articleRepository = Container.articleRepository;
+    }
 
-  public boolean articleExists(int id) {
-    return articleRepository.articleExists(id);
-  }
+    public int write(int memberId, String title, String body) {
+        return articleRepository.write(memberId, title, body);
+    }
 
-  public void delete(int id) {
-    articleRepository.delete(id);
-  }
+    public boolean articleExists(int id) {
+        return articleRepository.articleExists(id);
+    }
 
-  public void update(int id, String title, String body) {
-    articleRepository.update(id, title, body);
-  }
+    public void delete(int id) {
+        articleRepository.delete(id);
+    }
 
-  public Article getArticleById(int id) {
-    return articleRepository.getArticleById(id);
-  }
+    public void update(int id, String title, String body) {
+        articleRepository.update(id, title, body);
+    }
 
-  public void increaseHit(int id) {
-    articleRepository.increaseHit(id);
-  }
+    public Article getArticleById(int id) {
+        return articleRepository.getArticleById(id);
+    }
 
-  public List<Article> getForPrintArticleById(int page, int pageItemCount, String searchKeyword) {
-    int limitFrom = (page - 1) * pageItemCount;
-    int limitTake = pageItemCount;
+    public void increaseHit(int id) {
+        articleRepository.increaseHit(id);
+    }
 
-    Map<String, Object> args = new HashMap<>();
-    args.put("limitFrom", limitFrom);
-    args.put("limitTake", limitTake);
-    return articleRepository.getArticles(args, searchKeyword);
-  }
+    public List<Article> getForPrintArticleById(int page, int pageItemCount, String searchKeyword) {
+        int limitFrom = (page - 1) * pageItemCount;
+        int limitTake = pageItemCount;
+
+        Map<String, Object> args = new HashMap<>();
+        args.put("limitFrom", limitFrom);
+        args.put("limitTake", limitTake);
+        return articleRepository.getArticles(args, searchKeyword);
+    }
 }
