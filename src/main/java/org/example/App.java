@@ -78,7 +78,7 @@ public class App {
             Container.articleController.write();
         } else if (rq.getUrlPath().equals("/usr/article/list")) { // 목록 기능
             Container.articleController.showList();
-        } else if (rq.getUrlPath().equals("/usr/article/detail")) { // ??모름 아마 글 본문 보기 같은건가
+        } else if (rq.getUrlPath().equals("/usr/article/detail")) { // 상세보기
             Container.articleController.showDetail();
         } else if (rq.getUrlPath().equals("/usr/article/modify")) { // 수정 기능
             Container.articleController.modify();
