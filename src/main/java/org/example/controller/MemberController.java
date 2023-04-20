@@ -11,24 +11,25 @@ public class MemberController {
     memberService = Container.memberService;
   }
 
-  public void join() {
-    String loginId;
-    String loginPw;
-    String loginPwConfirm;
-    String name;
+  public void join() { // 회원가입 메서드
+    String loginId; // id가 담기는 변수
+    String loginPw; // pw가 담기는 변수
+    String loginPwConfirm; // pw확인값이 담기는 변수
+    String name; // 이름이 담기는 변수
 
     System.out.println("== 회원 가입 ==");
 
     // 로그인 아이디 입력
     while (true) {
       System.out.printf("로그인 아이디 : ");
-      loginId = Container.scanner.nextLine().trim();
+      loginId = Container.scanner.nextLine().trim(); // 로그인아이디가 loginId에 담김
 
-      if (loginId.length() == 0) {
+      if (loginId.length() == 0) { // 로그인아이디 문자열의 길이가 0일때
         System.out.println("로그인 아이디를 입력해주세요.");
-        continue;
+        continue; // 반복문 빠져나감
       }
-
+      // 아이디를 잘 입력했다면 아래로직 실행
+      // 중복여부 확인.
       boolean isLoginIdDup = memberService.isLoginIdDup(loginId);
 
       if (isLoginIdDup) {

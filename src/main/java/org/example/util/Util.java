@@ -3,7 +3,7 @@ package org.example.util;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Util {
+public class Util {// 라이브러리라고 생각하고 상세로직은 자세히 볼 필요 없음
 
   public static String f(String format, Object... args) {
     return String.format(format, args);

@@ -9,8 +9,8 @@ public class Rq {
   Map<String, String> params; // Map 타입으로 params 선언해주고 명령어 담을 용도로 활용
   String urlPath;
 
-  public Rq(String url) {
-    this.url = url;
+  public Rq(String url) { // 명령어(cmd)값을 Rq생성자 매개변수로 받아온다
+    this.url = url; // 받아온 cmd값을 클래스 필드변수로 전달
     params = Util.getUrlParamsFromUrl(this.url); // 명령어문을 ?와 &와 =을 기준으로 나누어져 가공된 값들이 들어간 Map형태의 params가 담김.
     urlPath = Util.getUrlPathFromUrl(this.url); // 물음표 기준으로 두덩이로 나뉜 명령문 중 0번째 인덱스만 추출한 값.
   }
