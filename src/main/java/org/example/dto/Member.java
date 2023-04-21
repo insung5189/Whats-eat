@@ -9,18 +9,16 @@ public class Member {
   private int id;
   private String regDate;
   private String updateDate;
-  private String loginNick;
+  private String loginId;
   private String loginPw;
-  private String email;
   private String name;
 
   public Member(Map<String, Object> memberMap) {
     this.id = (int) memberMap.get("id");
     this.regDate = (String) memberMap.get("regDate");
     this.updateDate = (String) memberMap.get("updateDate");
-    this.loginNick = (String) memberMap.get("loginNick");
+    this.loginId = (String) memberMap.get("loginId");
     this.loginPw = (String) memberMap.get("loginPw");
     this.name = (String) memberMap.get("name");
-    this.email = (String) memberMap.get("email");
   }
 }
