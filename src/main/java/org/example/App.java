@@ -30,11 +30,11 @@ public class App {
             Connection conn = null; // null값을 넣어주는 이유?
 
             try {
-                Class.forName("com.mysql.jdbc.Driver"); // JDBC드라이버를 로딩하여 메모리에 올리기 위한 메서드(드라이버는 데이터베이스 벤더(vendor)에서 제공하는 jar 파일로 제공)
+                Class.forName("com.mysql.jdbc.Driver"); // JDBC드라이버를 로딩하여 메모리에 올리기 위한 함수(드라이버는 데이터베이스 벤더(vendor)에서 제공하는 jar 파일로 제공)
             } catch (ClassNotFoundException e) {
                 System.out.println("예외 : MySQL 드라이버 로딩 실패");
                 System.out.println("프로그램을 종료합니다.");
-                break; // break;를 이용해서 while문에서 탈출하고 프로그램이 종료된다.
+                break;
             }
 
             String url = "jdbc:mysql://127.0.0.1:3306/text_board?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull";
@@ -48,6 +48,7 @@ public class App {
 
                 // action 메서드 실행
                 action(Container.rq, cmd); // action메서드를 통해서 입력받은 명령어를 받아들이고 대조하여 해당 로직을 실행할 수 있도록 함.
+
             } catch (SQLException e) { // DB연결에 실패하거나 구문에 오류가 있는 경우 발생할 수 있는 오류
                 System.out.println("예외 : MySQL 드라이버 로딩 실패");
                 System.out.println("프로그램을 종료합니다.");
@@ -65,6 +66,7 @@ public class App {
         }
         Container.scanner.close(); // 위 블럭이 끝나면서 DB연결을 마쳤으니 스캐너도 종료
     }
+
     private void action(Rq rq, String cmd) { // 명령어를 받아서 while문 내부에서 실행해줄 action메서드
         if (rq.getUrlPath().equals("/usr/member/join")) { // 회원가입 기능
             Container.memberController.join();
@@ -78,7 +80,7 @@ public class App {
             Container.articleController.write();
         } else if (rq.getUrlPath().equals("/usr/article/list")) { // 목록 기능
             Container.articleController.showList();
-        } else if (rq.getUrlPath().equals("/usr/article/detail")) { // 상세보기
+        } else if (rq.getUrlPath().equals("/usr/article/detail")) { // ??모름 아마 글 본문 보기 같은건가
             Container.articleController.showDetail();
         } else if (rq.getUrlPath().equals("/usr/article/modify")) { // 수정 기능
             Container.articleController.modify();

@@ -13,7 +13,6 @@ public class ArticleRepository {
     public int write(int memberId, String title, String body) {
         SecSql sql = new SecSql();
 
-        //append는 문자열 합치는 기능.
         sql.append("INSERT INTO article");
         sql.append(" SET regDate = NOW()");
         sql.append(", updateDate = NOW()");

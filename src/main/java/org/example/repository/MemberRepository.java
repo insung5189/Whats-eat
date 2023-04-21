@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class MemberRepository {
 
-    public boolean isLoginIdDup(String loginId) { // member테이블상에 id중복확인용 메서드
-        SecSql sql = new SecSql(); // sql객체를 인스턴스화 한 후 쿼리를 작성해서 넣어줄 용도로 사용
+    public boolean isLoginIdDup(String loginId) {
+        SecSql sql = new SecSql();
 
-        sql.append("SELECT COUNT(*) > 0"); // loginid와 일치하는 레코드의 수가 0보다 큰지(있는지) 확인하기 위한 쿼리
-        sql.append("FROM `member`"); // member테이블에서 수행할 것을 지칭
-        sql.append("WHERE loginId = ?", loginId); // 테이블상 로그인아이디와 사용자가 입력한 로그인아이디가 일치하는지
+        sql.append("SELECT COUNT(*) > 0");
+        sql.append("FROM `member`");
+        sql.append("WHERE loginId = ?", loginId);
 
         return DBUtil.selectRowBooleanValue(Container.conn, sql);
     }
