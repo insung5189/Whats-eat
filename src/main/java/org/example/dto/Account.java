@@ -18,8 +18,8 @@ public class Account {
     this.id = (int) memberMap.get("id");
     this.regDate = (String) memberMap.get("regDate");
     this.updateDate = (String) memberMap.get("updateDate");
-    this.loginNick = (String) memberMap.get("loginNick");
-    this.loginPw = (String) memberMap.get("loginPw");
+    this.loginNick = (String) memberMap.get("user_nickname");
+    this.loginPw = (String) memberMap.get("password");
     this.name = (String) memberMap.get("name");
     this.email = (String) memberMap.get("email");
   }

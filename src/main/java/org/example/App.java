@@ -24,7 +24,7 @@ public class App {
        */
 
             // DB 연결
-            Connection conn = null; // null값을 넣어주는 이유?
+            Connection conn = null; // null값을 넣어주는 이유? => 초기화 그냥 아무거나 일단 넣고 시작
 
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver"); // JDBC드라이버를 로딩하여 메모리에 올리기 위한 함수(드라이버는 데이터베이스 벤더(vendor)에서 제공하는 jar 파일로 제공)
