@@ -65,7 +65,7 @@ public class MemberRepository {
 
         sql.append("SELECT *");
         sql.append("FROM `account`");
-        sql.append("WHERE loginNick = ?", loginNick);
+        sql.append("WHERE user_nickname = ?", loginNick);
 
         Map<String, Object> memberMap = DBUtil.selectRow(Container.conn, sql);
 
