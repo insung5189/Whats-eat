@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Map;
 
 @Data
-public class Member {
+public class Account {
   private int id;
   private String regDate;
   private String updateDate;
@@ -14,7 +14,7 @@ public class Member {
   private String email;
   private String name;
 
-  public Member(Map<String, Object> memberMap) {
+  public Account(Map<String, Object> memberMap) {
     this.id = (int) memberMap.get("id");
     this.regDate = (String) memberMap.get("regDate");
     this.updateDate = (String) memberMap.get("updateDate");

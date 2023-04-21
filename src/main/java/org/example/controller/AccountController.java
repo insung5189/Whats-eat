@@ -1,14 +1,14 @@
 package org.example.controller;
 
 import org.example.Container;
-import org.example.dto.Member;
-import org.example.service.MemberService;
+import org.example.dto.Account;
+import org.example.service.AccountService;
 
-public class MemberController {
-  private MemberService memberService;
+public class AccountController {
+  private AccountService accountService;
 
-  public MemberController() {
-    memberService = Container.memberService;
+  public AccountController() {
+    accountService = Container.accountService;
   }
 
   public void join() { // 회원가입 메서드
@@ -37,7 +37,7 @@ public class MemberController {
         continue;
       }
 
-      boolean isloginNickDup = memberService.isloginNickDup(loginNick);
+      boolean isloginNickDup = accountService.isloginNickDup(loginNick);
 
       if (isloginNickDup) {
         System.out.printf("%s(은)는 이미 사용중인 로그인 아이디입니다.\n", loginNick);
@@ -92,7 +92,7 @@ public class MemberController {
         continue;
       }
 
-      boolean isemailDup = memberService.isemailDup(email);
+      boolean isemailDup = accountService.isemailDup(email);
 
       if (isemailDup) {
         System.out.printf("%s(은)는 이미 사용중인 이메일 입니다.\n", email);
@@ -126,7 +126,7 @@ public class MemberController {
       break;
     }
 
-    int id = memberService.join(loginNick, loginPw, email, birth, name);
+    int id = accountService.join(loginNick, loginPw, email, birth, name);
 
     System.out.printf("%d번 회원이 등록되었습니다.\n", id);
   }
@@ -146,9 +146,9 @@ public class MemberController {
       return;
     }
 
-    Member member = memberService.getMemberByloginNick(loginNick);
+    Account account = accountService.getMemberByloginNick(loginNick);
 
-    if (member == null ) {
+    if (account == null ) {
       System.out.println("입력하신 로그인 아이디는 존재하지 않습니다.");
       return;
     }
@@ -171,14 +171,14 @@ public class MemberController {
         continue;
       }
 
-      if(member.getLoginPw().equals(loginPw) == false) {
+      if(account.getLoginPw().equals(loginPw) == false) {
         loginTryCount++;
         System.out.println("비밀번호가 일치하지 않습니다.");
         continue;
       }
 
-      System.out.printf("\"%s\"님 환영합니다.\n", member.getName());
-      Container.session.login(member);
+      System.out.printf("\"%s\"님 환영합니다.\n", account.getName());
+      Container.session.login(account);
 
       break;
     }
@@ -189,7 +189,7 @@ public class MemberController {
       System.out.println("로그인 상태가 아닙니다.");
     }
     else {
-      System.out.println(Container.session.loginedMember.getLoginNick());
+      System.out.println(Container.session.loginedAccount.getLoginNick());
     }
   }
 

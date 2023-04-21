@@ -1,14 +1,13 @@
 package org.example.repository;
 
 import org.example.Container;
-import org.example.dto.Member;
+import org.example.dto.Account;
 import org.example.util.DBUtil;
 import org.example.util.SecSql;
 
-import java.sql.Connection;
 import java.util.Map;
 
-public class MemberRepository {
+public class AccountRepository {
 
     public boolean isloginNickDup(String loginNick) {
         SecSql sql = new SecSql();
@@ -60,7 +59,7 @@ public class MemberRepository {
         return id;
     }
 
-    public Member getMemberByloginNick(String loginNick) {
+    public Account getMemberByloginNick(String loginNick) {
         SecSql sql = new SecSql();
 
         sql.append("SELECT *");
@@ -73,7 +72,7 @@ public class MemberRepository {
             return null;
         }
 
-        return new Member(memberMap);
+        return new Account(memberMap);
     }
 
 

@@ -1,8 +1,5 @@
 package org.example;
 
-import org.example.controller.ArticleController;
-import org.example.controller.MemberController;
-
 
 // JDBC를 사용하여 데이터베이스와 연결하고 쿼리를 실행하는 데 필요한 클래스
 import java.sql.Connection; // 데이터베이스 연결을 나타냄
@@ -74,13 +71,13 @@ public class App {
 
     private void action(Rq rq, String cmd) { // 명령어를 받아서 while문 내부에서 실행해줄 action메서드
         if (rq.getUrlPath().equals("회원가입")) { // 회원가입 기능
-            Container.memberController.join();
+            Container.accountController.join();
         } else if (rq.getUrlPath().equals("로그인")) { // 로그인 기능
-            Container.memberController.login();
+            Container.accountController.login();
         } else if (rq.getUrlPath().equals("로그아웃")) { // 로그아웃 기능
-            Container.memberController.logout();
+            Container.accountController.logout();
         } else if (rq.getUrlPath().equals("/usr/member/whoami")) { // 계정찾기 기능
-            Container.memberController.whoami();
+            Container.accountController.whoami();
         } else if (rq.getUrlPath().equals("등록")) { // 등록 기능
             Container.articleController.write();
         } else if (rq.getUrlPath().equals("목록")) { // 목록 기능
