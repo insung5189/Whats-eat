@@ -4,23 +4,25 @@ import org.example.Container;
 import org.example.dto.Member;
 import org.example.repository.MemberRepository;
 
-import java.sql.Connection;
-
 public class MemberService {
   private MemberRepository memberRepository;
   public MemberService() {
     memberRepository = Container.memberRepository;
   }
 
-  public boolean isLoginIdDup(String loginId) {
-    return memberRepository.isLoginIdDup(loginId);
+  public boolean isloginNickDup(String loginNick) {
+    return memberRepository.isloginNickDup(loginNick);
   }
 
-  public int join(String loginId, String loginPw, String name) {
-    return memberRepository.join(loginId, loginPw, name);
+  public int join(String loginNick, String loginPw, String email, String birth, String name) {
+    return memberRepository.join(loginNick, loginPw, email, birth, name);
   }
 
-  public Member getMemberByLoginId(String loginId) {
-    return memberRepository.getMemberByLoginId(loginId);
+  public Member getMemberByloginNick(String loginNick) {
+    return memberRepository.getMemberByloginNick(loginNick);
+  }
+
+  public boolean isemailDup(String email) {
+    return memberRepository.isemailDup(email);
   }
 }

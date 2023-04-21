@@ -10,36 +10,62 @@ import java.util.Map;
 
 public class MemberRepository {
 
-    public boolean isLoginIdDup(String loginId) { // member테이블상에 id중복확인용 메서드
-        SecSql sql = new SecSql(); // sql객체를 인스턴스화 한 후 쿼리를 작성해서 넣어줄 용도로 사용
+    public boolean isloginNickDup(String loginNick) {
+        SecSql sql = new SecSql();
 
-        sql.append("SELECT COUNT(*) > 0"); // loginid와 일치하는 레코드의 수가 0보다 큰지(있는지) 확인하기 위한 쿼리
-        sql.append("FROM `member`"); // member테이블에서 수행할 것을 지칭
-        sql.append("WHERE loginId = ?", loginId); // 테이블상 로그인아이디와 사용자가 입력한 로그인아이디가 일치하는지
+        sql.append("SELECT COUNT(*) > 0");
+        sql.append("FROM `account`");
+        sql.append("WHERE `user_nickname` = ?", loginNick);
+
+        return DBUtil.selectRowBooleanValue(Container.conn, sql);
+    }
+    public boolean isemailDup(String email) {
+        SecSql sql = new SecSql();
+
+        sql.append("SELECT COUNT(*) > 0");
+        sql.append("FROM `account`");
+        sql.append("WHERE `user_email` = ?", email);
 
         return DBUtil.selectRowBooleanValue(Container.conn, sql);
     }
 
-    public int join(String loginId, String loginPw, String name) {
+    public int join(String loginNick, String loginPw, String email, String birth, String name) {
         SecSql sql = new SecSql();
-        sql.append("INSERT INTO member");
+        /*
+        sql.append("INSERT INTO account");
         sql.append("SET regDate = NOW()");
         sql.append(", updateDate = NOW()");
-        sql.append(", loginId = ?", loginId);
+        sql.append(", loginNick = ?", loginNick);
         sql.append(", loginPw = ?", loginPw);
         sql.append(", name = ?", name);
+         */ // 파이널코드 원본데이터
+        // 이하 뭐잡솨YOU?서비스에 맞춘 테이블정보
+        sql.append("INSERT INTO account");
+        sql.append("SET `created_at` = NOW()");
+        sql.append(", `user_nickname` = ?", loginNick);
+        sql.append(", `password` = ?", loginPw);
+        sql.append(", `user_email` = ?", email);
+        sql.append(", `birth` = ?", birth);
+        /* 쿼리문 목표
+        insert into account
+        set `user_nickname` = 'inseong',
+	        `password` = '123',
+	        `user_email` = 'insung5189@gmail.com',
+	        `created_at` = NOW(),
+	        `birth` = '1993-11-03';
+         */ // 쿼리문 목표
 
         int id = DBUtil.insert(Container.conn, sql);
 
         return id;
     }
 
-    public Member getMemberByLoginId(String loginId) {
+    public Member getMemberByloginNick(String loginNick) {
         SecSql sql = new SecSql();
 
         sql.append("SELECT *");
-        sql.append("FROM `member`");
-        sql.append("WHERE loginId = ?", loginId);
+        sql.append("FROM `account`");
+        sql.append("WHERE loginNick = ?", loginNick);
 
         Map<String, Object> memberMap = DBUtil.selectRow(Container.conn, sql);
 
@@ -49,4 +75,6 @@ public class MemberRepository {
 
         return new Member(memberMap);
     }
+
+
 }

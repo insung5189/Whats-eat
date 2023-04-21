@@ -12,28 +12,35 @@ public class MemberController {
   }
 
   public void join() { // 회원가입 메서드
-    String loginId; // id가 담기는 변수
-    String loginPw; // pw가 담기는 변수
-    String loginPwConfirm; // pw확인값이 담기는 변수
-    String name; // 이름이 담기는 변수
+    String loginNick;
+    String loginPw;
+    String loginPwConfirm;
+    String name;
+    String email;
+    String birth;
+    /*
+    `user_nickname`	loginNick
+	`password`	loginPw
+	`user_email`	email
+	`birth`	birth
+     */
 
     System.out.println("== 회원 가입 ==");
 
     // 로그인 아이디 입력
     while (true) {
-      System.out.printf("로그인 아이디 : ");
-      loginId = Container.scanner.nextLine().trim(); // 로그인아이디가 loginId에 담김
+      System.out.printf("사용할 닉네임 : ");
+      loginNick = Container.scanner.nextLine().trim();
 
-      if (loginId.length() == 0) { // 로그인아이디 문자열의 길이가 0일때
+      if (loginNick.length() == 0) {
         System.out.println("로그인 아이디를 입력해주세요.");
-        continue; // 반복문 빠져나감
+        continue;
       }
-      // 아이디를 잘 입력했다면 아래로직 실행
-      // 중복여부 확인.
-      boolean isLoginIdDup = memberService.isLoginIdDup(loginId);
 
-      if (isLoginIdDup) {
-        System.out.printf("%s(은)는 이미 사용중인 로그인 아이디입니다.\n", loginId);
+      boolean isloginNickDup = memberService.isloginNickDup(loginNick);
+
+      if (isloginNickDup) {
+        System.out.printf("%s(은)는 이미 사용중인 로그인 아이디입니다.\n", loginNick);
         continue;
       }
 
@@ -75,6 +82,26 @@ public class MemberController {
       }
     }
 
+    // 이메일 입력
+    while (true) {
+      System.out.printf("사용할 이메일 : ");
+      email = Container.scanner.nextLine().trim();
+
+      if (email.length() == 0) {
+        System.out.println("사용할 이메일을 입력해주세요.");
+        continue;
+      }
+
+      boolean isemailDup = memberService.isemailDup(email);
+
+      if (isemailDup) {
+        System.out.printf("%s(은)는 이미 사용중인 이메일 입니다.\n", email);
+        continue;
+      }
+
+      break;
+    }
+
     // 이름 입력
     while (true) {
       System.out.printf("이름 : ");
@@ -87,27 +114,39 @@ public class MemberController {
       break;
     }
 
-    int id = memberService.join(loginId, loginPw, name);
+    // 생년월일 입력
+    while (true) {
+      System.out.printf("생년월일(YYYY-MM-DD) : ");
+      birth = Container.scanner.nextLine().trim();
+
+      if (birth.length() == 0) {
+        System.out.println("생년월일을 입력해주세요(YYYY-MM-DD)");
+        continue;
+      }
+      break;
+    }
+
+    int id = memberService.join(loginNick, loginPw, email, birth, name);
 
     System.out.printf("%d번 회원이 등록되었습니다.\n", id);
   }
 
 
   public void login() {
-    String loginId;
+    String loginNick;
     String loginPw;
 
     System.out.println("== 로그인 ==");
 
     System.out.printf("로그인 아이디 : ");
-    loginId = Container.scanner.nextLine().trim();
+    loginNick = Container.scanner.nextLine().trim();
 
-    if (loginId.length() == 0) {
+    if (loginNick.length() == 0) {
       System.out.println("로그인 아이디를 입력해주세요.");
       return;
     }
 
-    Member member = memberService.getMemberByLoginId(loginId);
+    Member member = memberService.getMemberByloginNick(loginNick);
 
     if (member == null ) {
       System.out.println("입력하신 로그인 아이디는 존재하지 않습니다.");
@@ -150,7 +189,7 @@ public class MemberController {
       System.out.println("로그인 상태가 아닙니다.");
     }
     else {
-      System.out.println(Container.session.loginedMember.getLoginId());
+      System.out.println(Container.session.loginedMember.getLoginNick());
     }
   }
 
