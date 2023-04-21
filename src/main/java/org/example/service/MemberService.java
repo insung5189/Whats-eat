@@ -16,11 +16,14 @@ public class MemberService {
     return memberRepository.isLoginIdDup(loginId);
   }
 
-  public int join(String loginId, String loginPw, String name) {
-    return memberRepository.join(loginId, loginPw, name);
+  public int join(String loginId, String loginPw, String nickname, String e_mail, String birth) {
+    return memberRepository.join(loginId, loginPw, nickname,e_mail,birth);
   }
 
   public Member getMemberByLoginId(String loginId) {
     return memberRepository.getMemberByLoginId(loginId);
+  }
+  public void modifyloginPw(String modifyloginPw){
+     memberRepository.modifyloginPw(modifyloginPw);
   }
 }
