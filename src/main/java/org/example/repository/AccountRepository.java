@@ -30,7 +30,7 @@ public class AccountRepository {
 
     public int join(String user_id, String password, String user_name, String user_email, String birthday) {
         SecSql sql = new SecSql();
-        /*
+        /* 이전데이터 백업
         sql.append("INSERT INTO account");
         sql.append("SET regDate = NOW()");
         sql.append(", updateDate = NOW()");
@@ -38,7 +38,7 @@ public class AccountRepository {
         sql.append(", loginPw = ?", loginPw);
         sql.append(", name = ?", name);
          */ // 파이널코드 원본데이터
-        // 이하 뭐잡솨YOU?서비스에 맞춘 테이블정보
+        // 이하 taste_genie에 맞춘 테이블정보
         sql.append("INSERT INTO account");
         sql.append("SET `user_id` = ?", user_id);
         sql.append(", `password` = ?", password);
