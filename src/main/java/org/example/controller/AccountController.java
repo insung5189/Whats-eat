@@ -12,17 +12,19 @@ public class AccountController {
   }
 
   public void join() { // 회원가입 메서드
+    String user_id;
+    String password;
+    String passwordConfirm;
+    String user_name;
+    String user_email;
+    String birthday;
+    /* 이전데이터 백업
     String loginNick;
     String loginPw;
     String loginPwConfirm;
     String name;
     String email;
     String birth;
-    /*
-    `user_nickname`	loginNick
-	`password`	loginPw
-	`user_email`	email
-	`birth`	birth
      */
 
     System.out.println("== 회원 가입 ==");
@@ -30,17 +32,17 @@ public class AccountController {
     // 로그인 아이디 입력
     while (true) {
       System.out.printf("사용할 닉네임 : ");
-      loginNick = Container.scanner.nextLine().trim();
+      user_id = Container.scanner.nextLine().trim();
 
-      if (loginNick.length() == 0) {
+      if (user_id.length() == 0) {
         System.out.println("로그인 아이디를 입력해주세요.");
         continue;
       }
 
-      boolean isloginNickDup = accountService.isloginNickDup(loginNick);
+      boolean isUser_IdDup = accountService.isUser_IdDup(user_id);
 
-      if (isloginNickDup) {
-        System.out.printf("%s(은)는 이미 사용중인 로그인 아이디입니다.\n", loginNick);
+      if (isUser_IdDup) {
+        System.out.printf("%s(은)는 이미 사용중인 로그인 아이디입니다.\n", user_id);
         continue;
       }
 
@@ -50,34 +52,34 @@ public class AccountController {
     // 로그인 비밀번호 입력
     while (true) {
       System.out.printf("로그인 비밀번호 : ");
-      loginPw = Container.scanner.nextLine().trim();
+      password = Container.scanner.nextLine().trim();
 
-      if (loginPw.length() == 0) {
+      if (password.length() == 0) {
         System.out.println("로그인 비밀번호를 입력해주세요.");
         continue;
       }
 
       // 로그인 비밀번호 확인 입력
-      boolean loginPwConfirmIsSame = true;
+      boolean passwordConfirmIsSame = true;
 
       while (true) {
         System.out.printf("로그인 비밀번호 확인 : ");
-        loginPwConfirm = Container.scanner.nextLine().trim();
+        passwordConfirm = Container.scanner.nextLine().trim();
 
-        if (loginPwConfirm.length() == 0) {
+        if (passwordConfirm.length() == 0) {
           System.out.println("로그인 비밀번호를 입력해주세요.");
           continue;
         }
 
-        if (loginPw.equals(loginPwConfirm) == false) {
+        if (password.equals(passwordConfirm) == false) {
           System.out.println("로그인 비밀번호가 일치하지 않습니다.");
-          loginPwConfirmIsSame = false;
+          passwordConfirmIsSame = false;
           break;
         }
         break;
       }
 
-      if (loginPwConfirmIsSame) {
+      if (passwordConfirmIsSame) {
         break;
       }
     }
@@ -85,17 +87,17 @@ public class AccountController {
     // 이메일 입력
     while (true) {
       System.out.printf("사용할 이메일 : ");
-      email = Container.scanner.nextLine().trim();
+      user_email = Container.scanner.nextLine().trim();
 
-      if (email.length() == 0) {
+      if (user_email.length() == 0) {
         System.out.println("사용할 이메일을 입력해주세요.");
         continue;
       }
 
-      boolean isemailDup = accountService.isemailDup(email);
+      boolean isUser_emailDup = accountService.isUser_emailDup(user_email);
 
-      if (isemailDup) {
-        System.out.printf("%s(은)는 이미 사용중인 이메일 입니다.\n", email);
+      if (isUser_emailDup) {
+        System.out.printf("%s(은)는 이미 사용중인 이메일 입니다.\n", user_email);
         continue;
       }
 
@@ -105,9 +107,9 @@ public class AccountController {
     // 이름 입력
     while (true) {
       System.out.printf("이름 : ");
-      name = Container.scanner.nextLine().trim();
+      user_name = Container.scanner.nextLine().trim();
 
-      if (name.length() == 0) {
+      if (user_name.length() == 0) {
         System.out.println("이름을 입력해주세요.");
         continue;
       }
@@ -117,36 +119,40 @@ public class AccountController {
     // 생년월일 입력
     while (true) {
       System.out.printf("생년월일(YYYY-MM-DD) : ");
-      birth = Container.scanner.nextLine().trim();
+      birthday = Container.scanner.nextLine().trim();
 
-      if (birth.length() == 0) {
+      if (birthday.length() == 0) {
         System.out.println("생년월일을 입력해주세요(YYYY-MM-DD)");
         continue;
       }
       break;
     }
 
-    int id = accountService.join(loginNick, loginPw, email, birth, name);
+    int id = accountService.join(user_id, password, user_name, user_email, birthday);
 
     System.out.printf("%d번 회원이 등록되었습니다.\n", id);
   }
 
 
   public void login() {
+    String user_id;
+    String password;
+    /* 이전데이터 백업
     String loginNick;
     String loginPw;
+    */
 
     System.out.println("== 로그인 ==");
 
     System.out.printf("로그인 아이디 : ");
-    loginNick = Container.scanner.nextLine().trim();
+    user_id = Container.scanner.nextLine().trim();
 
-    if (loginNick.length() == 0) {
+    if (user_id.length() == 0) {
       System.out.println("로그인 아이디를 입력해주세요.");
       return;
     }
 
-    Account account = accountService.getMemberByloginNick(loginNick);
+    Account account = accountService.getAccountBy_user_id(user_id);
 
     if (account == null ) {
       System.out.println("입력하신 로그인 아이디는 존재하지 않습니다.");
@@ -164,20 +170,20 @@ public class AccountController {
       }
 
       System.out.printf("로그인 비밀번호 : ");
-      loginPw = Container.scanner.nextLine().trim();
+      password = Container.scanner.nextLine().trim();
 
-      if (loginPw.length() == 0) {
+      if (password.length() == 0) {
         System.out.println("로그인 비밀번호를 입력해주세요.");
         continue;
       }
 
-      if(account.getLoginPw().equals(loginPw) == false) {
+      if(account.getPassword().equals(password) == false) {
         loginTryCount++;
         System.out.println("비밀번호가 일치하지 않습니다.");
         continue;
       }
 
-      System.out.printf("\"%s\"님 환영합니다.\n", account.getName());
+      System.out.printf("\"%s\"님 환영합니다.\n", account.getUser_name());
       Container.session.login(account);
 
       break;
@@ -189,7 +195,7 @@ public class AccountController {
       System.out.println("로그인 상태가 아닙니다.");
     }
     else {
-      System.out.println(Container.session.loginedAccount.getLoginNick());
+      System.out.println(Container.session.loginedAccount.getUser_id());
     }
   }
 

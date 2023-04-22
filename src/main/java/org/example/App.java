@@ -34,7 +34,7 @@ public class App {
                 break;
             }
 
-            String url = "jdbc:mysql://127.0.0.1:3306/whats_eat111?";
+            String url = "jdbc:mysql://127.0.0.1:3306/taste_genie?"; // taste_genie == DB이름
             url += "useUnicode=true&";
             url += "characterEncoding=utf8&";
             url += "autoReconnect=true&";

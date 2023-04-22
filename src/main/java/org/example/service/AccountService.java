@@ -10,19 +10,20 @@ public class AccountService {
     accountRepository = Container.accountRepository;
   }
 
-  public boolean isloginNickDup(String loginNick) {
-    return accountRepository.isloginNickDup(loginNick);
+  public boolean isUser_IdDup(String user_id) {
+    return accountRepository.isUser_IdDup(user_id);
+  }
+  public boolean isUser_emailDup(String user_email) {
+    return accountRepository.isUser_emailDup(user_email);
   }
 
-  public int join(String loginNick, String loginPw, String email, String birth, String name) {
-    return accountRepository.join(loginNick, loginPw, email, birth, name);
+  public int join(String user_id, String password, String user_name, String user_email, String birthday) {
+    return accountRepository.join(user_id, password, user_name, user_email, birthday);
   }
 
-  public Account getMemberByloginNick(String loginNick) {
-    return accountRepository.getMemberByloginNick(loginNick);
+  public Account getAccountBy_user_id(String user_id) {
+    return accountRepository.getAccountBy_user_id(user_id);
   }
 
-  public boolean isemailDup(String email) {
-    return accountRepository.isemailDup(email);
-  }
+
 }

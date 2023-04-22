@@ -9,16 +9,16 @@ import java.util.Map;
 
 public class AccountRepository {
 
-    public boolean isloginNickDup(String loginNick) {
+    public boolean isUser_IdDup(String user_id) {
         SecSql sql = new SecSql();
 
         sql.append("SELECT COUNT(*) > 0");
         sql.append("FROM `account`");
-        sql.append("WHERE `user_nickname` = ?", loginNick);
+        sql.append("WHERE `user_id` = ?", user_id);
 
         return DBUtil.selectRowBooleanValue(Container.conn, sql);
     }
-    public boolean isemailDup(String email) {
+    public boolean isUser_emailDup(String email) {
         SecSql sql = new SecSql();
 
         sql.append("SELECT COUNT(*) > 0");
@@ -28,7 +28,7 @@ public class AccountRepository {
         return DBUtil.selectRowBooleanValue(Container.conn, sql);
     }
 
-    public int join(String loginNick, String loginPw, String email, String birth, String name) {
+    public int join(String user_id, String password, String user_name, String user_email, String birthday) {
         SecSql sql = new SecSql();
         /*
         sql.append("INSERT INTO account");
@@ -40,18 +40,23 @@ public class AccountRepository {
          */ // 파이널코드 원본데이터
         // 이하 뭐잡솨YOU?서비스에 맞춘 테이블정보
         sql.append("INSERT INTO account");
-        sql.append("SET `created_at` = NOW()");
-        sql.append(", `user_nickname` = ?", loginNick);
-        sql.append(", `password` = ?", loginPw);
-        sql.append(", `user_email` = ?", email);
-        sql.append(", `birth` = ?", birth);
+        sql.append("SET `user_id` = ?", user_id);
+        sql.append(", `password` = ?", password);
+        sql.append(", `user_name` = ?", user_name);
+        sql.append(", `user_email` = ?", user_email);
+        sql.append(", `created_at` = NOW()");
+        sql.append(", `modified_at` = NOW()");
+        sql.append(", `birthday` = ?", birthday);
+
         /* 쿼리문 목표
         insert into account
-        set `user_nickname` = 'inseong',
-	        `password` = '123',
-	        `user_email` = 'insung5189@gmail.com',
-	        `created_at` = NOW(),
-	        `birth` = '1993-11-03';
+        set `user_id` = 'inseong',
+            `password` = '123',
+            `user_name` = '황인성',
+            `user_email` = 'insung5189@gmail.com',
+            `created_at` = NOW(),
+            `modified_at` = NOW(),
+            `birthday` = '1993-11-03';
          */ // 쿼리문 목표
 
         int id = DBUtil.insert(Container.conn, sql);
@@ -59,20 +64,20 @@ public class AccountRepository {
         return id;
     }
 
-    public Account getMemberByloginNick(String loginNick) {
+    public Account getAccountBy_user_id(String user_id) {
         SecSql sql = new SecSql();
 
         sql.append("SELECT *");
         sql.append("FROM `account`");
-        sql.append("WHERE user_nickname = ?", loginNick);
+        sql.append("WHERE user_id = ?", user_id);
 
-        Map<String, Object> memberMap = DBUtil.selectRow(Container.conn, sql);
+        Map<String, Object> accountMap = DBUtil.selectRow(Container.conn, sql);
 
-        if (memberMap.isEmpty()) {
+        if (accountMap.isEmpty()) {
             return null;
         }
 
-        return new Account(memberMap);
+        return new Account(accountMap);
     }
 
 
