@@ -26,14 +26,14 @@ public class App {
             Connection conn = null; // null값을 넣어주는 이유?
 
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 System.out.println("예외 : MySQL 드라이버 로딩 실패");
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
 
-            String url = "jdbc:mysql://127.0.0.1:3306/text_board?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull";
+            String url = "jdbc:mysql://127.0.0.1:3306/text_board?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull";
 
 
             try {
@@ -46,7 +46,8 @@ public class App {
                 action(Container.rq, cmd);
 
             } catch (SQLException e) { // DB연결에 실패하거나 구문에 오류가 있는 경우 발생할 수 있는 오류
-                System.out.println("예외 : MySQL 드라이버 로딩 실패");
+                System.out.println(e.getMessage());
+                System.out.println("예외 : MySQL 드라이버 로딩 실패111");
                 System.out.println("프로그램을 종료합니다.");
                 break;
             } finally {
@@ -72,7 +73,9 @@ public class App {
             Container.memberController.logout();
         } else if (rq.getUrlPath().equals("수정")) {
             Container.memberController.modifyloginPw();
-        }else if (cmd.equals("system exit")) {
+        } else if (rq.getUrlPath().equals("회원탈퇴")) {
+            Container.memberController.withdrawal();
+        } else if (cmd.equals("system exit")) {
             System.out.println("시스템 종료");
             System.exit(0); // System.exit(0);을 이용하면 현재 사용중인 JVM자체가 종료되기 때문에 프로그램을 강제로 종료할 수 있다
             // 매개변수로 전달된 '0' 은 프로그램 종료 코드를 나타냄 0이면 정상적인 종료를 뜻함.

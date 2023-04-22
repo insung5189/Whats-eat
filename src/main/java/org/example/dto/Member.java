@@ -12,6 +12,9 @@ public class Member {
   private String loginId;
   private String loginPw;
   private String name;
+  private String nickname;
+
+
 
   public Member(Map<String, Object> memberMap) {
     this.id = (int) memberMap.get("id");
@@ -20,5 +23,7 @@ public class Member {
     this.loginId = (String) memberMap.get("loginId");
     this.loginPw = (String) memberMap.get("loginPw");
     this.name = (String) memberMap.get("name");
+    this.nickname = (String) memberMap.get("nickname");
   }
+
 }
