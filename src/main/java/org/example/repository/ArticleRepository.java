@@ -10,15 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 public class ArticleRepository {
-    public int write(int memberId, String title, String content) {
+    public int write(int account_id, String title, String content) {
         SecSql sql = new SecSql();
-
+/*
         sql.append("INSERT INTO post");
         sql.append(" SET regDate = NOW()");
         sql.append(", updateDate = NOW()");
-        sql.append(", memberId = ?", memberId);
+        sql.append(", memberId = ?", account_id);
         sql.append(", title = ?", title);
         sql.append(", `content` = ?", content);
+
+ */
 
         int id = DBUtil.insert(Container.conn, sql);
         return id;

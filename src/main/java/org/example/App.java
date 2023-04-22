@@ -76,7 +76,7 @@ public class App {
             Container.accountController.login();
         } else if (rq.getUrlPath().equals("로그아웃")) { // 로그아웃 기능
             Container.accountController.logout();
-        } else if (rq.getUrlPath().equals("/usr/member/whoami")) { // 계정찾기 기능
+        } else if (rq.getUrlPath().equals("상태")) { // 로그인상태보기
             Container.accountController.whoami();
         } else if (rq.getUrlPath().equals("등록")) { // 등록 기능
             Container.articleController.write();
