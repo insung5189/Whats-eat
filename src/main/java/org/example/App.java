@@ -17,6 +17,8 @@ public class App {
             String cmd = Container.scanner.nextLine(); // 스캐너로 입력받은 명령어가 cmd변수에 저장됨.
 
             Container.rq = new Rq(cmd); // 컨테이너클래스에 선언된 rq변수에 Rq(cmd)클래스 객체를 할당
+
+
       /*해석 :
       1. 입력받은 명령문을 Rq클래스로 보내서 url이라는 변수에 저장함.
       2. Rq생성자 내부에서 Util.getUrlParamsFromUrl로 명령을 보내서 split으로 문자열을 쪼개서 분석함

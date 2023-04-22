@@ -10,17 +10,33 @@ import java.util.List;
 import java.util.Map;
 
 public class ArticleRepository {
-    public int write(int account_id, String title, String content) {
+    public int write(String title, String content, int hit, int like, int account_id) {
         SecSql sql = new SecSql();
-/*
-        sql.append("INSERT INTO post");
-        sql.append(" SET regDate = NOW()");
-        sql.append(", updateDate = NOW()");
-        sql.append(", memberId = ?", account_id);
-        sql.append(", title = ?", title);
-        sql.append(", `content` = ?", content);
 
- */
+        sql.append("INSERT INTO post");
+        sql.append(" SET title = ?", title);
+        sql.append(", `content` = ?", content);
+        sql.append(", created_at = NOW()");
+        sql.append(", modified_at = NOW()");
+        sql.append(", hit = ?", hit);
+        sql.append(", `like` = ?", like);
+        sql.append(", account_id = ?", account_id);
+
+
+
+
+        /*
+        insert into post
+        set `title` = '이야 이 식빵 무지 달거같긴한데',
+	    `content` = '모래반지 빵야빵야 이야 이 식빵 무지 달다',
+        `created_at` = NOW(),
+	    `modified_at` = NOW(),
+	    `hit` = 1,
+	    `like` = 0,
+	    `account_id` = 1;
+         */
+
+
 
         int id = DBUtil.insert(Container.conn, sql);
         return id;
@@ -49,7 +65,7 @@ public class ArticleRepository {
         SecSql sql = new SecSql();
 
         sql.append("UPDATE article");
-        sql.append("SET updateDate = NOW()");
+        sql.append("SET modified_at = NOW()");
         sql.append(", title = ?", title);
         sql.append(", `content` = ?", content);
         sql.append("WHERE id = ?", id);
@@ -60,12 +76,27 @@ public class ArticleRepository {
     public Article getArticleById(int id) {
         SecSql sql = new SecSql();
 
+        sql.append("SELECT P.*");
+        sql.append(", A.user_name AS extra__writerName");
+        sql.append("FROM post AS P");
+        sql.append("INNER JOIN account AS A");
+        sql.append("ON P.account_id = A.id");
+        sql.append("WHERE P.id = ?", id);
+
+        /* 이전데이터 백업
         sql.append("SELECT A.*");
         sql.append(", M.name AS extra__writerName");
         sql.append("FROM article AS A");
         sql.append("INNER JOIN member AS M");
         sql.append("ON A.memberId = M.id");
         sql.append("WHERE A.id = ?", id);
+        A => P
+        M => A
+        name => user_name
+        article => post
+        member => account
+        memberId => account_id
+         */
 
         Map<String, Object> articleMap = DBUtil.selectRow(Container.conn, sql);
 
@@ -94,6 +125,13 @@ public class ArticleRepository {
             limitTake = (int) args.get("limitTake");
         }
 
+        /*
+        A => P
+        M => A
+        name => user_name
+        article => post
+        member => account
+        memberId => account_id
         sql.append("SELECT A.*, M.name AS extra__writerName");
         sql.append("FROM article AS A");
         sql.append("INNER JOIN member AS M");
@@ -102,6 +140,22 @@ public class ArticleRepository {
             sql.append("WHERE A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
         }
         sql.append("ORDER BY A.id DESC");
+         */
+        /*chatGPT 추천쿼리
+        SELECT P.*, A.user_name AS extra__writerName
+        FROM post AS P
+        INNER JOIN account AS A ON P.account_id = A.id
+        ORDER BY P.id DESC
+        LIMIT ?, ?
+         */
+        sql.append("SELECT P.*, A.user_name AS extra__writerName");
+        sql.append("FROM post AS P");
+        sql.append("INNER JOIN account AS A");
+        sql.append("ON P.account_id = A.id");
+        if (searchKeyword.length() > 0) {
+            sql.append("WHERE P.title LIKE CONCAT('%', ?, '%')", searchKeyword);
+        }
+        sql.append("ORDER BY P.id DESC");
 
         if (limitFrom != -1) {
             sql.append("LIMIT ?, ?", limitFrom, limitTake);
@@ -121,7 +175,7 @@ public class ArticleRepository {
     public void increaseHit(int id) {
         SecSql sql = new SecSql();
 
-        sql.append("UPDATE article");
+        sql.append("UPDATE post");
         sql.append("SET hit = hit + 1");
         sql.append("WHERE id = ?", id);
 

@@ -10,6 +10,17 @@ import java.util.List;
 import static org.example.Container.rq;
 
 public class ArticleController {
+  /*
+  public int id;
+  public String title;
+  public String content;
+  public String create_at;
+  public String modified_at;
+  public int hit;
+  public int like;
+  public int account_id;
+  public String extra__writerName;
+   */
 
   private ArticleService articleService;
 
@@ -27,10 +38,12 @@ public class ArticleController {
     System.out.printf("제목 : ");
     String title = Container.scanner.nextLine();
     System.out.printf("내용 : ");
-    String body = Container.scanner.nextLine();
+    String content = Container.scanner.nextLine();
+    int hit = 0;
+    int like = 0;
 
-    int memberId = Container.session.loginedMemberId;
-    int id = articleService.write(memberId, title, body);
+    int account_id = Container.session.loginedMemberId;
+    int id = articleService.write(title, content, hit, like, account_id);
 
     System.out.printf("%d번 게시물이 등록되었습니다.\n", id);
   }
@@ -41,7 +54,7 @@ public class ArticleController {
     int pageItemCount = 10;
 
     // 임시
-    pageItemCount = 5;
+    pageItemCount = 10;
 
     List<Article> articles = articleService.getForPrintArticleById(page, pageItemCount, searchKeyword);
 
@@ -50,10 +63,10 @@ public class ArticleController {
       return;
     }
 
-    System.out.println("번호 / 작성날짜 / 작성자 / 제목");
+    System.out.println("번호 / 작성날짜 / 작성자 / 제목 / 조회수 / 좋아요 수");
 
     for (Article article : articles) {
-      System.out.printf("%d / %s / %s / %s\n", article.id, article.create_at, article.extra__writerName, article.title);
+      System.out.printf("%d / %s / %s / %s / %d / %d\n", article.id, article.create_at, article.extra__writerName, article.title, article.hit, article.like);
     }
   }
 
@@ -78,6 +91,7 @@ public class ArticleController {
     System.out.printf("수정날짜 : %s\n", article.modified_at);
     System.out.printf("작성자 : %s\n", article.account_id);
     System.out.printf("조회수 : %d\n", article.hit);
+    System.out.printf("좋아요 수 : %d\n", article.like);
     System.out.printf("제목 : %s\n", article.title);
     System.out.printf("내용 : %s\n", article.content);
   }
@@ -112,9 +126,9 @@ public class ArticleController {
     System.out.printf("새 제목 : ");
     String title = Container.scanner.nextLine();
     System.out.printf("새 내용 : ");
-    String body = Container.scanner.nextLine();
+    String content = Container.scanner.nextLine();
 
-    articleService.update(id, title, body);
+    articleService.update(id, title, content);
 
     System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
   }

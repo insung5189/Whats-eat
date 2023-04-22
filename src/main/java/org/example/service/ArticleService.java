@@ -15,8 +15,8 @@ public class ArticleService {
         articleRepository = Container.articleRepository;
     }
 
-    public int write(int account_id, String title, String content) {
-        return articleRepository.write(account_id, title, content);
+    public int write(String title, String content, int hit, int like, int account_id) {
+        return articleRepository.write(title, content, hit, like, account_id);
     }
 
     public boolean articleExists(int id) {

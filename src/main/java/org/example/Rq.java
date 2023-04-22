@@ -13,6 +13,7 @@ public class Rq {
     this.url = url; // 받아온 cmd값을 클래스 필드변수로 전달
     params = Util.getUrlParamsFromUrl(this.url); // 명령어문을 ?와 &와 =을 기준으로 나누어져 가공된 값들이 들어간 Map형태의 params가 담김.
     urlPath = Util.getUrlPathFromUrl(this.url); // 물음표 기준으로 두덩이로 나뉜 명령문 중 0번째 인덱스만 추출한 값.
+
   }
 
   public Map<String, String> getParams() {
