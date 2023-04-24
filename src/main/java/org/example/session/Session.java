@@ -7,7 +7,7 @@ public class Session {
   public Account loginedAccount;
 
   public Session() {
-    loginedMemberId = -1;
+    loginedMemberId = -1; // 왜 초기화값을 -1로 두었을까?
   }
 
   public boolean isLogined() {
@@ -18,8 +18,13 @@ public class Session {
     loginedAccount = account;
   }
 
+
   public void logout() {
     loginedMemberId = -1;
     loginedAccount = null;
+  }
+
+  public void guest() {
+
   }
 }

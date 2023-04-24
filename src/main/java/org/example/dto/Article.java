@@ -9,11 +9,12 @@ public class Article {
   public int id;
   public String title;
   public String content;
-  public String create_at;
+  public String created_at;
   public String modified_at;
   public int hit;
   public int like;
   public int account_id;
+  public int mapping_id;
   public String extra__writerName;
 
   /* 원본데이터 백업
@@ -45,11 +46,12 @@ public class Article {
     this.id = (int) articleMap.get("id");
     this.title = (String) articleMap.get("title");
     this.content = (String) articleMap.get("content");
-    this.create_at = (String) articleMap.get("create_at");
+    this.created_at = (String) articleMap.get("created_at");
     this.modified_at = (String) articleMap.get("modified_at");
     this.hit = (int) articleMap.get("hit");
     this.like = (int) articleMap.get("like");
     this.account_id = (int) articleMap.get("account_id");
+    this.mapping_id = (int) articleMap.get("mapping_id");
     /* 원본데이터 백업
     this.id = (int) articleMap.get("id");
     this.regDate = (String) articleMap.get("regDate");

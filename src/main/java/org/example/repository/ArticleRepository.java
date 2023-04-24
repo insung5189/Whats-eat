@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ArticleRepository {
-    public int write(String title, String content, int hit, int like, int account_id) {
+    public int write(String title, String content, int hit, int like, int account_id, int mapping_id) {
         SecSql sql = new SecSql();
 
         sql.append("INSERT INTO post");
@@ -21,10 +21,7 @@ public class ArticleRepository {
         sql.append(", hit = ?", hit);
         sql.append(", `like` = ?", like);
         sql.append(", account_id = ?", account_id);
-
-
-
-
+        sql.append(", mapping_id = ?", mapping_id);
         /*
         insert into post
         set `title` = '이야 이 식빵 무지 달거같긴한데',
@@ -46,7 +43,7 @@ public class ArticleRepository {
         SecSql sql = new SecSql();
 
         sql.append("SELECT COUNT(*) > 0");
-        sql.append("FROM article");
+        sql.append("FROM post");
         sql.append("WHERE id = ?", id);
 
         return DBUtil.selectRowBooleanValue(Container.conn, sql);
@@ -55,7 +52,7 @@ public class ArticleRepository {
     public void delete(int id) {
         SecSql sql = new SecSql();
 
-        sql.append("DELETE FROM article");
+        sql.append("DELETE FROM post");
         sql.append("WHERE id = ?", id);
 
         DBUtil.delete(Container.conn, sql);
@@ -64,7 +61,7 @@ public class ArticleRepository {
     public void update(int id, String title, String content) {
         SecSql sql = new SecSql();
 
-        sql.append("UPDATE article");
+        sql.append("UPDATE post");
         sql.append("SET modified_at = NOW()");
         sql.append(", title = ?", title);
         sql.append(", `content` = ?", content);
