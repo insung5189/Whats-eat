@@ -135,7 +135,7 @@ public class AccountController {
     }
 
 
-    public void login() {
+    public void login() { // 로그인 메서드
         String user_id;
         String password;
     /* 이전데이터 백업
@@ -192,7 +192,7 @@ public class AccountController {
         }
     }
 
-    public void whoami() {
+    public void whoami() { // 로그인상태 메서드
         if (!Container.session.isLogined()) {
             System.out.println("게스트모드 입니다.");
             System.out.println("목록과 글 내용 열람만 가능합니다.");
@@ -221,12 +221,12 @@ public class AccountController {
    */
     }
 
-    public void logout() {
-        Container.session.logout();
+    public void logout() { // 로그아웃 메서드
+        Container.session.logout(); // 세션에서 logout메서드를 실행함.
         System.out.println("로그아웃 되었습니다.");
     }
 
-    public void guest(String cmd) {
+    public void guest(String cmd) { // 게스트메서드
         if (cmd.equals("게스트")) {
             System.out.println("guest님 환영합니다.");
             System.out.println("글, 댓글 작성이 제한되며 열람과 좋아요만 가능합니다.");

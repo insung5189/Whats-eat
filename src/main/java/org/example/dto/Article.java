@@ -14,8 +14,9 @@ public class Article {
   public int hit;
   public int like;
   public int account_id;
-  public int mapping_id;
+  public int category_id;
   public String extra__writerName;
+  public String extra__category;
 
   /* 원본데이터 백업
   public int id;
@@ -51,7 +52,7 @@ public class Article {
     this.hit = (int) articleMap.get("hit");
     this.like = (int) articleMap.get("like");
     this.account_id = (int) articleMap.get("account_id");
-    this.mapping_id = (int) articleMap.get("mapping_id");
+    this.category_id = (int) articleMap.get("category_id");
     /* 원본데이터 백업
     this.id = (int) articleMap.get("id");
     this.regDate = (String) articleMap.get("regDate");
@@ -64,6 +65,9 @@ public class Article {
 
     if(articleMap.get("extra__writerName") != null) {
       this.extra__writerName = (String) articleMap.get("extra__writerName");
+    }
+    if (articleMap.get("extra__category") != null) {
+      this.extra__category = (String) articleMap.get("extra__category");
     }
   }
 }
