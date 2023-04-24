@@ -25,5 +25,15 @@ public class AccountService {
     return accountRepository.getAccountBy_user_id(user_id);
   }
 
+  public void modifyPassword(String user_id, String modifyPassword) {
+    accountRepository.modifyPassword(user_id, modifyPassword);
+  }
+
+  public void withdrawal(String user_id) {//탈퇴 기능을  가지게끔 Withdrawal 함수를 선언한다....// 해당 자료값 user_id는 밑에 값을 담기위해 담았음.
+    accountRepository.withdrawal(user_id);//accountRepository 클래스에서.withdrawal 을 선언하여. 위에 자료값 String user_id를 담아 불러온다.
+
+
+  }
+
 
 }

@@ -9,7 +9,6 @@ public class Account { // 해당 테이블 칼럼명과 순서 일치시킬 것
     private int id;
     private String user_id;
     private String password;
-    private String passwordConfirm;
     private String user_name;
     private String user_email;
     private String created_at;

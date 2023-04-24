@@ -99,6 +99,8 @@ public class App {
             Container.accountController.login();
         } else if (rq.getUrlPath().equals("로그아웃")) { // 로그아웃 기능
             Container.accountController.logout();
+        } else if (rq.getUrlPath().equals("비밀번호수정")) {
+            Container.accountController.modifyPassword();
         } else if (rq.getUrlPath().equals("상태")) { // 로그인상태보기
             Container.accountController.whoami();
         } else if (rq.getUrlPath().equals("등록")) { // 등록 기능
@@ -113,6 +115,8 @@ public class App {
             Container.articleController.delete();
         } else if (rq.getUrlPath().equals("게스트")) { // 삭제 기능
             Container.accountController.guest(cmd);
+        } else if (rq.getUrlPath().equals("회원탈퇴")) {
+            Container.accountController.withdrawal();
         } else if (cmd.equals("종료")) { // 프로그램 종료 기능
             System.out.println("시스템 종료");
             System.exit(0); // System.exit(0);을 이용하면 현재 사용중인 JVM자체가 종료되기 때문에 프로그램을 강제로 종료할 수 있다

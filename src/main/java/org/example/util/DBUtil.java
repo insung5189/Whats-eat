@@ -163,11 +163,13 @@ public class DBUtil {// 라이브러리라고 생각하고 상세로직은 자�
         }
       }
     }
-
     return affectedRows;
   }
 
   public static int delete(Connection dbConn, SecSql sql) {
     return update(dbConn, sql);
   }
+//  public static int withdrawal_delete(Connection dbConn, SecSql sql) {
+//    return withdrawal_deleted(dbConn, sql);
+//  }
 }
