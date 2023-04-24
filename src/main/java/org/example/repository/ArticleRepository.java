@@ -125,4 +125,13 @@ public class ArticleRepository {
 
         DBUtil.update(Container.conn, sql);
     }
+    public  void commnet(int id , String post_id){
+        SecSql sql = new SecSql();
+        sql.append("INSERT INTO comment");
+        sql.append("SET regDate` = NOW() ");
+        sql.append(",`modified` = NOW() ");
+        sql.append(",member_id",id);
+        sql.append(",post_id",post_id);
+        DBUtil.update(Container.conn, sql);
+    }
 }

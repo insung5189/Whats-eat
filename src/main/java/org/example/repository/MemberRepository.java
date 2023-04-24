@@ -41,7 +41,6 @@ public class MemberRepository {
         sql.append("SET loginPw = ?",modifyloginPw);
         sql.append("where loginId = ?",loginId);//member Repository에서 where 는 sql에 if와 같다. 그 조건문 where를 loginId와 = < 값이 같을때 다음로직이 실행된다.
         DBUtil.update(Container.conn, sql);
-
     }
 
     public Member getMemberByLoginId(String loginId) {
@@ -67,7 +66,9 @@ public class MemberRepository {
         sql.append("DELETE FROM `member`");//Mysql에 멤버안에 로우를 삭제할 로직 실행하게한다.
         sql.append("WHERE `loginId` = ?", loginId);
         DBUtil.delete(Container.conn, sql);
+    }
+
+
 
     }
 
-}

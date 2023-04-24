@@ -31,7 +31,7 @@ public class MemberService {
 
   public void withdrawal(String loginId) {//탈퇴 기능을  가지게끔 Withdrawal 함수를 선언한다....// 해당 자료값 loginId는 밑에 값을 담기위해 담았음.
     memberRepository.withdrawal(loginId);//memberRepository 클래스에서.withdrawal 을 선언하여. 위에 자료값 String loginId를 담아 불러온다.
-
-
   }
-}
+
+   }
+

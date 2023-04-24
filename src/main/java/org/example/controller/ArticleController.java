@@ -153,4 +153,27 @@ public class ArticleController {
     System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
   }
 
+
+
+  public  void comment(){//댓글  기능을  가지게끔 //탈퇴 기능을  가지게끔 comment 함수를 선언한다... 함수를 선언한다...
+    int memberId = Container.session.loginedMemberId;
+
+    System.out.println("댓글을 입력하세요");//글쓰기 로직이 실행시 출력되는 문구
+    String comment = Container.scanner.nextLine().trim();//컨테이너어 클래스에있는 스캐너의 입력값(공백없이 엔터칠대까지 한줄을 comment라는 변수에 담는다
+    System.out.println("댓글을 등록하시겟습니까?");
+    System.out.println("댓글등록 / 취소 중 입력해주세요");
+    String writecomment = Container.scanner.nextLine().trim();
+    if (comment.equals("댓글등록")){
+
+
+    }else if(comment.equals("취소")){
+      System.out.println("취소되었습니다.");
+
+    }
+    System.out.println("댓글등록이 완료되었습니다");
+    //articleService.comment(comment);
+
+
+  }
+
 }

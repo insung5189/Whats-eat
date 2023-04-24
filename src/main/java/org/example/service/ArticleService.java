@@ -48,4 +48,15 @@ public class ArticleService {
         args.put("limitTake", limitTake);
         return articleRepository.getArticles(args, searchKeyword);
     }
+
+    public int comment (int Id, String loginId ) {
+       articleRepository.commnet(Id, loginId);//아티클 댓글  레지퍼토리 만드는중
+        return Id;
+    }
+
 }
+
+
+
+
+

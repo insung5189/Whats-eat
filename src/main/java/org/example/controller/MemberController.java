@@ -247,7 +247,7 @@ public class MemberController {
 
     System.out.println("정말 떠나시려구요 ㅠㅠ?");
     System.out.println("확인 / 취소 중 입력해주세요");
-    String flag = Container.scanner.nextLine().trim();//컨테이너어 클래스에있는 스캐너의 입력값(공백없이 엔터칠대까지 한줄을 loginId라는 변수에 담는다.
+    String flag = Container.scanner.nextLine().trim();//컨테이너어 클래스에있는 스캐너의 입력값(공백없이 엔터칠대까지 한줄을 flag라는 변수에 담는다.
     if (flag.equals("확인")) {
       System.out.println(withdrawalloginId);
       memberService.withdrawal(Container.session.loginedMember.getLoginId());// memberService 안에 withdrawal 함수를 작동하기 위해서  . 이후 login이 된 정보값 withdrawloginId로
@@ -261,6 +261,7 @@ public class MemberController {
 
 
   }
+
 
 
 }
