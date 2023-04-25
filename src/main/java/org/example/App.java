@@ -126,6 +126,7 @@ public class App {
             System.out.println("게스트로 입장 : 게스트");
             System.out.println("회원가입 하기 : 회원가입");
             System.out.println("로그인 하기 : 로그인");
+            System.out.println("비밀번호 수정하기 : 비밀번호수정");
             System.out.println("로그아웃 하기 : 로그아웃");
             System.out.println("게시물 등록하기 : 등록");
             System.out.println("목록보기: 목록");
@@ -136,7 +137,7 @@ public class App {
             System.out.println("예) 수정?id=1");
             System.out.println("게시물 삭제하기 : 삭제?id=(게시물번호)");
             System.out.println("예) 삭제?id=1");
-            System.out.println("시스템 종료 : 종료");
+            System.out.println("회원탈퇴 하기 : 회원탈퇴");
             System.out.println("================================================");
         } else { // 아무 조건도 해당하지 않을 때(명령어를 잘못 입력했을 때)
             System.out.println("명령어를 확인해주세요.");

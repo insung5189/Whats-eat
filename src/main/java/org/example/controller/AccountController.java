@@ -189,7 +189,7 @@ public class AccountController {
                 continue; // if문 탈출하고 다시 while문으로 돌아가서 비밀번호 입력하라고 안내.
             }
 
-            System.out.printf("\"%s\"님 환영합니다.\n", account.getUser_name());
+            System.out.printf("\"%s\"님 오늘은 뭐잡솨YOU?.\n", account.getUser_name());
             withdrawaluser_id = user_id;
             Container.session.login(account);
 
@@ -245,7 +245,7 @@ public class AccountController {
                 continue;
             }
 
-            System.out.printf("\"%s\"님 환영합니다.\n", account.getUser_name());//해당 위에 로직이 정상적으로 다 실행이 됫을경우에 출력되는 문구
+            System.out.printf("\"%s\"님 .\n", account.getUser_name());//해당 위에 로직이 정상적으로 다 실행이 됫을경우에 출력되는 문구
             Container.session.login(account);// Container 클래스에 있는 session 클래스 타입의 변수 session을 선언된것을 가지고와서 session 안에 있는 선언된 함수 login
             //불러와
             break;
@@ -295,7 +295,7 @@ public class AccountController {
     public void guest(String cmd) { // 게스트메서드
         if (cmd.equals("게스트")) {
             System.out.println("guest님 환영합니다.");
-            System.out.println("글, 댓글 작성이 제한되며 열람과 좋아요만 가능합니다.");
+            System.out.println("글, 댓글 작성이 제한되며 목록과 본문 열람만 가능합니다.");
             Container.session.guest();
         }
     }
