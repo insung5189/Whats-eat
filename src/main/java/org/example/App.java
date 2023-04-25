@@ -30,7 +30,6 @@ public class App {
 //            System.out.println("수정");
 //            System.out.println("삭제");
 //            System.out.println("회원가입");
-//            System.out.println("회원가입");
             System.out.println("");
             System.out.println("\"도움말\"을 입력하시면 입력 가능한 명령어를 볼 수 있습니다.");
             System.out.printf("명령어를 입력해주세요 :  "); // 명령어 입력 유도 출력문
