@@ -100,6 +100,8 @@ public class AccountRepository {
         sql.append("WHERE `user_id` = ?", user_id);
         DBUtil.delete(Container.conn, sql); // <== 오류터짐
 
+
+
     }
 
 
