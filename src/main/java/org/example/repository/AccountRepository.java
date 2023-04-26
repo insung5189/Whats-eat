@@ -68,9 +68,8 @@ public class AccountRepository {
         SecSql sql = new SecSql();
         sql.append("UPDATE `account`");
         sql.append("SET `password` = ?", modifyPassword);
-        sql.append("where `user_id` = ?",user_id);//member Repository에서 where 는 sql에 if와 같다. 그 조건문 where를 loginId와 = < 값이 같을때 다음로직이 실행된다.
+        sql.append("where `user_id` = ?", user_id);//member Repository에서 where 는 sql에 if와 같다. 그 조건문 where를 loginId와 = < 값이 같을때 다음로직이 실행된다.
         DBUtil.update(Container.conn, sql);
-
     }
 
     public Account getAccountBy_user_id(String user_id) { // DB에서 SELECT문을 사용하여 account 테이블에 접근, 입력받은 user_id값을 담아서 쿼리실행
