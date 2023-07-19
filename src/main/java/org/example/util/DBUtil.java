@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DBUtil {
+public class DBUtil {// 라이브러리라고 생각하고 상세로직은 자세히 볼 필요 없음
   public static Map<String, Object> selectRow(Connection dbConn, SecSql sql) {
     List<Map<String, Object>> rows = selectRows(dbConn, sql);
 
@@ -163,11 +163,13 @@ public class DBUtil {
         }
       }
     }
-
     return affectedRows;
   }
 
   public static int delete(Connection dbConn, SecSql sql) {
     return update(dbConn, sql);
   }
+//  public static int withdrawal_delete(Connection dbConn, SecSql sql) {
+//    return withdrawal_deleted(dbConn, sql);
+//  }
 }

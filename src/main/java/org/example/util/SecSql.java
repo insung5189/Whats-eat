@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecSql {
+public class SecSql {// 라이브러리라고 생각하고 상세로직은 자세히 볼 필요 없음
   private StringBuilder sqlBuilder;
   private List<Object> datas;
 

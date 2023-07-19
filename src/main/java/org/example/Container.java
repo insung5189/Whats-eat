@@ -1,11 +1,11 @@
 package org.example;
 
 import org.example.controller.ArticleController;
-import org.example.controller.MemberController;
+import org.example.controller.AccountController;
 import org.example.repository.ArticleRepository;
-import org.example.repository.MemberRepository;
+import org.example.repository.AccountRepository;
 import org.example.service.ArticleService;
-import org.example.service.MemberService;
+import org.example.service.AccountService;
 import org.example.session.Session;
 
 import java.sql.Connection;
@@ -14,13 +14,13 @@ import java.util.Scanner;
 public class Container {
 
   public static ArticleRepository articleRepository;
-  public static MemberRepository memberRepository;
+  public static AccountRepository accountRepository;
 
   public static ArticleService articleService;
-  public static MemberService memberService;
+  public static AccountService accountService;
 
   public static ArticleController articleController;
-  public static MemberController memberController;
+  public static AccountController accountController;
 
   public static Scanner scanner;
   public static Session session;
@@ -29,13 +29,13 @@ public class Container {
 
   public static void init() {
     articleRepository = new ArticleRepository();
-    memberRepository = new MemberRepository();
+    accountRepository = new AccountRepository();
 
     articleService = new ArticleService();
-    memberService = new MemberService();
+    accountService = new AccountService();
 
     articleController = new ArticleController();
-    memberController = new MemberController();
+    accountController = new AccountController();
 
     scanner = new Scanner(System.in);
     session = new Session();

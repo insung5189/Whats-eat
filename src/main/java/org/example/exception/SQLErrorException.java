@@ -1,6 +1,6 @@
 package org.example.exception;
 
-public class SQLErrorException extends RuntimeException {
+public class SQLErrorException extends RuntimeException { // 라이브러리라고 생각하고 상세로직은 자세히 볼 필요 없음
     private Exception origin;
 
     public SQLErrorException(String message, Exception origin) {

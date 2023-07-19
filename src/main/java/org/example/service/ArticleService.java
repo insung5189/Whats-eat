@@ -15,8 +15,8 @@ public class ArticleService {
         articleRepository = Container.articleRepository;
     }
 
-    public int write(int memberId, String title, String body) {
-        return articleRepository.write(memberId, title, body);
+    public int write(String title, String content, int hit, int like, int account_id, int category_id) {
+        return articleRepository.write(title, content, hit, like, account_id, category_id);
     }
 
     public boolean articleExists(int id) {
@@ -27,12 +27,16 @@ public class ArticleService {
         articleRepository.delete(id);
     }
 
-    public void update(int id, String title, String body) {
-        articleRepository.update(id, title, body);
+    public void update(int id, String title, String content) {
+        articleRepository.update(id, title, content);
     }
 
     public Article getArticleById(int id) {
         return articleRepository.getArticleById(id);
+
+    }
+    public Article getArticleByCategory(int id) {
+        return articleRepository.getArticleByCategory(id);
     }
 
     public void increaseHit(int id) {
