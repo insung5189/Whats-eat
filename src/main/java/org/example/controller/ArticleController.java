@@ -29,7 +29,7 @@ public class ArticleController {
     }
 
     public void write() {
-        String mapping_id_string;
+        String mapping_id_string = "";
         if (!Container.session.isLogined()) {
             System.out.println("게스트모드 에서는 등록할 수 없습니다.");
             System.out.println("목록과 글 내용 열람만 가능합니다.");

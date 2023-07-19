@@ -92,7 +92,7 @@ public class AccountRepository {
     }
 
     public void withdrawal(String user_id) {//탈퇴 기능을  가지게끔 Withdrawal 함수를 선언한다...
-        System.out.println("로그인아이디 : "+ user_id);
+        System.out.println("사용자 이름 : "+ user_id);
 
         SecSql sql = new SecSql();
 

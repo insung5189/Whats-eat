@@ -333,7 +333,7 @@ public class AccountController {
         System.out.println("확인 / 취소 중 입력해주세요");
         String flag = Container.scanner.nextLine().trim();//컨테이너어 클래스에있는 스캐너의 입력값(공백없이 엔터칠대까지 한줄을 loginId라는 변수에 담는다.
         if (flag.equals("확인")) {
-            System.out.println(withdrawaluser_id); // 출력
+            System.out.println("사용자 아이디 : " + withdrawaluser_id); // 출력
             accountService.withdrawal(Container.session.loginedAccount.getUser_name());// accountService 안에 withdrawal 함수를 작동하기 위해서  . 이후 login이 된 정보값 withdrawloginId로
             // 함수의 인자로 값을 넣어줫다.
             System.out.println("회원탈퇴가 정상적으로 되었습니다.");//위에 로직이 실행됫을경우 출력되는문구

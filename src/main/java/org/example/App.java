@@ -117,7 +117,7 @@ public class App {
         } else if (rq.getUrlPath().equals("회원탈퇴")) {
             Container.accountController.withdrawal();
         } else if (cmd.equals("종료")) { // 프로그램 종료 기능
-            System.out.println("시스템 종료");
+            System.out.println("다음에 또봐YOU~~");
             System.exit(0); // System.exit(0);을 이용하면 현재 사용중인 JVM자체가 종료되기 때문에 프로그램을 강제로 종료할 수 있다
             // 매개변수로 전달된 '0' 은 프로그램 종료 코드를 나타냄 0이면 정상적인 종료를 뜻함.
         } else if (cmd.equals("도움말")) {
